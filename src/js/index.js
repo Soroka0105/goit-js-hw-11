@@ -27,6 +27,7 @@ async function handlerSubmit(evt) {
     createMarkUp(responce.data.hits);
     lightbox.refresh();
     if (responce.data.hits.length === 0) {
+      elms.loadMoreBtn.classList.replace('load-more', 'load-more-hiden');
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
