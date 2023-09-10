@@ -14,7 +14,7 @@ export function createMarkUp(arr) {
         <a class="gallery_link" href="${largeImageURL}">
         <div class="photo-card">
         
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+  <img class="img" src="${webformatURL}" alt="${tags}" loading="lazy" width="400px"/>
   <div class="info">
     <p class="info-item">
       <b>Likes ${likes}</b>
