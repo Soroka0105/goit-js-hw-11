@@ -2,9 +2,9 @@ import Notiflix from 'notiflix';
 import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import { createMarkUp, elms } from './api';
+import { createMarkUp, elms } from './makrUp';
 let page = 1;
-let perPage = 39;
+let perPage = 40;
 let lightbox = new SimpleLightbox('.gallery a', {});
 
 elms.form.addEventListener('submit', handlerSubmit);
@@ -42,7 +42,7 @@ async function handlerSubmit(evt) {
 
 async function loadMoreHandler() {
   page += 1;
-  perPage += 20;
+  // perPage += 20;
   const params = new URLSearchParams({
     key: elms.APIKEY,
     q: elms.input.value,
