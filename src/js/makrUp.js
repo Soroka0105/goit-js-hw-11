@@ -35,7 +35,7 @@ export function createMarkUp(arr) {
       }
     )
     .join('');
-  elms.gallery.innerHTML = markup;
+  elms.gallery.insertAdjacentHTML('beforeend', markup);
 }
 
 export const elms = {
