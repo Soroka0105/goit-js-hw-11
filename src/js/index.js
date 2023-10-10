@@ -2,9 +2,9 @@ import Notiflix from 'notiflix';
 import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import { createMarkUp, elms } from './makrUp';
+import { createMarkUp, elms } from './api';
 let page = 1;
-const perPage = 40;
+let perPage = 39;
 let lightbox = new SimpleLightbox('.gallery a', {});
 
 elms.form.addEventListener('submit', handlerSubmit);
@@ -12,7 +12,6 @@ elms.loadMoreBtn.addEventListener('click', loadMoreHandler);
 
 async function handlerSubmit(evt) {
   evt.preventDefault();
-
   const params = new URLSearchParams({
     key: elms.APIKEY,
     q: elms.input.value,
@@ -23,8 +22,6 @@ async function handlerSubmit(evt) {
     page: page,
   });
   try {
-    elms.loadMoreBtn.classList.replace('load-more', 'load-more-hiden');
-    elms.gallery.innerHTML = '';
     const responce = await axios.get(`${elms.BASIC_URL}?${params}`);
     console.log(responce);
     createMarkUp(responce.data.hits);
@@ -45,7 +42,7 @@ async function handlerSubmit(evt) {
 
 async function loadMoreHandler() {
   page += 1;
-  // perPage += 20;
+  perPage += 20;
   const params = new URLSearchParams({
     key: elms.APIKEY,
     q: elms.input.value,
@@ -67,7 +64,7 @@ async function loadMoreHandler() {
         'Sorry, there are no images matching your search query. Please try again.'
       );
     }
-    if (responce.data.hits.length === responce.data.totalHits) {
+    if (page === 5) {
       elms.loadMoreBtn.classList.replace('load-more', 'load-more-hiden');
     }
   } catch (error) {
